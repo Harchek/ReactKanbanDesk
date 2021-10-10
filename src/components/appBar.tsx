@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export function column(): JSX.Element {
+export function appBar(): JSX.Element {
   const classes = useStyles();
   return (
     <AppBar position="fixed" color='inherit'>

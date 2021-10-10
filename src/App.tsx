@@ -6,7 +6,7 @@ import { classicNameResolver } from 'typescript';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Avatar from '@material-ui/core/Avatar';
 
-import { column } from './components/column';
+import { column } from './components/appBar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +77,7 @@ function App() {
         <Box sx={{ bgcolor: '#cfe8fc', height: '100vh' }} />
       </Container>
     </React.Fragment> */}
-    <column/>
+
 <Grid container
 xs={12} 
 spacing={4} 
@@ -90,7 +90,7 @@ justify-content="start">
       <Grid item xs={4}>
         <Avatar className={classes.avatar}>1</Avatar>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={8} Column header={'ColumnHeaders.To_DO'} >
         <header>
           To do
         </header>
