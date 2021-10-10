@@ -1,10 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/button'
-import { AppBar, Container, Toolbar, Typography, Paper, Grid } from '@material-ui/core'
+import { Container, Toolbar, Typography, Paper, Grid, Box, Card, CardActionArea, CardMedia, CardContent, CardActions } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { classicNameResolver } from 'typescript';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Avatar from '@material-ui/core/Avatar';
+import { AppBar } from './components/AppBar';
+import { BoardColumn } from './components/BoardColumn';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     backgroundColor: "#f6f8fa",
-    width: "5vh",
-    height: "40vh",
+    width: "7vh",
+    height: "60vh",
     position: "relative",
-    top: "29vh",
-    left: "20px",
+    top: "10vh",
+    left: "30px",
     background: 'inherit',
 
   },
@@ -38,78 +40,60 @@ const useStyles = makeStyles((theme) => ({
   },
   typographyTextes: {
     position: "relative",
-    bottom: "18vh",
+    bottom: "14vh",
     right: "9vh",
-    display: "flex", 
+    display: "flex",
     justifyContent: "space-between"
   },
-  avatar:{
+  avatar: {
     position: "relative",
     bottom: "14vh",
     right: "14vh"
   },
+  card: {
+    position: "fixed",
+    top: "30vh",
+    left: "25px",
+    width: "335px",
 
-
+  },
 }))
 
-
-
-
-
-
+enum ColumnNames {
+  TO_DO = 'TO DO',
+  IN_PROGRESS = 'IN PROGRESS',
+  REVIEW = 'REVIEW',
+  DONE = 'DONE',
+}
 
 function App() {
   const classes = useStyles();
   return (
-    <>
-      <AppBar position="fixed" color='inherit'>
-        <Container fixed>
-          <Toolbar>
-            <Typography variant="h6" className={classes.typographyBar}>ReactKanbanApp by Harchek</Typography>
-          </Toolbar>
-        </Container>
-      </AppBar>
-
-
-
-      <Grid container
-       xs={12} 
-       spacing={4} 
-       direction="row"
-       justifyContent="flex-start"
-       alignItems="flex-end"
-       justify-content="start"
-       >
-        <Grid item xs={2}>
-          <Paper className={classes.paper} elevation={3}>
-          <Avatar className={classes.avatar}>0</Avatar>
-            <Typography variant="h6" className={classes.typographyTextes}>
-              Backlog
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={2}>
-          <Paper className={classes.paper} elevation={3}>
-          <Avatar className={classes.avatar}>1</Avatar>
-          <Typography variant="h6" className={classes.typographyTextes}>
-              To do
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={2}>
-          <Paper className={classes.paper} elevation={3}>
-          <Avatar className={classes.avatar}>3</Avatar>
-          <Typography  variant="h6" className={classes.typographyTextes}>
-              In progress
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={2}>
-          <Paper className={classes.paper} elevation={3}>
-          <Avatar className={classes.avatar}>4</Avatar>
-          <Typography  variant="h6" className={classes.typographyTextes}>
-            Done
-          </Typography>
-          </Paper>
-        </Grid>
+    <Grid container
+      xs={12}
+      spacing={4}
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="flex-end"
+      justify-content="start"
+    >
+      <Grid item xs={12}>
+        <AppBar />
       </Grid>
+      <Grid item xs={3}>
+        <BoardColumn columnName={ColumnNames.TO_DO} avatarNumber={1} />
+      </Grid>
+      <Grid item xs={3}>
+        <BoardColumn columnName={ColumnNames.IN_PROGRESS} avatarNumber={3} />
+      </Grid>
+      <Grid item xs={3}>
+        <BoardColumn columnName={ColumnNames.REVIEW} avatarNumber={4} />
+      </Grid>
+      <Grid item xs={3}>
+        <BoardColumn columnName={ColumnNames.DONE} avatarNumber={5} />
+      </Grid>
+    </Grid>
+  );
+}
+
+export default App;
